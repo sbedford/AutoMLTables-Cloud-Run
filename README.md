@@ -1,12 +1,19 @@
 # Cloud Run Demo calling AutoML Tables for Datacomp 2019
 
+You'll need to set the following environment variables according to your model and region:
+
+* TAGID - i.e. gcr.io/project-name
+* PROJECTID
+* COMPUTEREGION - i.e. us-central1
+* MODELID - i.e. taken from the trained AutoML tables model
+
 ## Build
 
-gcloud builds submit --tag gcr.io/sbedford-datacomp2019/predict
+gcloud builds submit --tag $TAGID
 
 ## Deploy
 
-gcloud beta run deploy --image gcr.io/sbedford-datacomp2019/predict:latest --project sbedford-datacomp2019 --platform managed --set-env-vars PROJECTID=sbedford-datacomp2019,COMPUTEREGION=us-central1,MODELID=TBL6785121439377784832
+gcloud beta run deploy --image $TAGID:latest --project $PROJECTID --platform managed --set-env-vars PROJECTID=$PROJECTID,COMPUTEREGION=$COMPUTEREGION,MODELID=$MODELID
 
 ## Test 
 
